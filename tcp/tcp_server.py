@@ -9,7 +9,6 @@ def calc_result(received_msg):
         "/": operator.truediv,
     }
 
-    #CALC:<n>:<operando1>:<op>:<operando2>
     msg = received_msg.split(":")
     num1 = int(msg[2])
     op_string = msg[3]
