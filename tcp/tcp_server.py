@@ -11,17 +11,18 @@ def calc_result(received_msg):
 
     #CALC:<n>:<operando1>:<op>:<operando2>
     msg = received_msg.split(":")
-    print(msg)
-    num1 = int(msg[1])
-    op_string = msg[2]
-    num2 = int(msg[3])
+    num1 = int(msg[2])
+    op_string = msg[3]
+    num2 = int(msg[4])
 
     if op_string in operadores:
-        resultado = operadores[op_string](num1, num2)
-        print(f"{resultado}") 
-        return resultado
+        try:
+            result = operadores[op_string](num1, num2) 
+            return "RESULT:" + msg[1] + ":" + str(result)
+        except ZeroDivisionError:
+            return "ERROR:" + msg[1] + ":Divisão por zero"
     else:
-        print(f"ERROR:n:mensagem de erro")
+        return "ERROR:" + msg[1] + ":Aconteceu um erro"
         
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -31,14 +32,17 @@ print(f"Servidor rodando")
 
 while True:
     conn, addr = s.accept()
-    print(f"conectado por {addr}")
+    print(f"Conectado com {addr}")
 
-    data = conn.recv(1024)
-    if data:
+    while True:
+        data = conn.recv(1024)
+        if not data:
+            break
+
         msg = data.decode('utf-8')
         print(f"Mensagem recebida: {msg}")
-        final_data = "RESULT:n:" + str(calc_result(msg))
-        #print(f"RESULT:{n}:{resultado}")
+        final_data = str(calc_result(msg))
         conn.sendall(bytes(final_data, 'utf-8'))
 
+    print(f"Finalizando conexão com {addr}")
     conn.close()
