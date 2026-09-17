@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+message CalcRequest {
+    int32 n_seq = 1;
+    int32 operando1 = 2;
+    string op = 3;
+    int32 operando2 = 4;
+}
+
+message CalcResult {
+    int32 n_seq = 1;
+    string status = 2;
+    double result = 3;
+}

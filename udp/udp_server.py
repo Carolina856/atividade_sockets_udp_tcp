@@ -52,7 +52,8 @@ while True:
     print(f"Cliente: {ip} - Porta: {porta}\nMsg: {msg}")
 
     #Calcula a perda simulada
-    if random.random() <= LOSS_RATE:
+    if random.random() <= LOSS_RATE: 
+        #TRATAR CASO EM QUE O USUÁRIO INSERE LOSS_RATE > 1
         print(f"Msg {n} de {ip}:{porta} foi descartada")
         n += 1
         continue

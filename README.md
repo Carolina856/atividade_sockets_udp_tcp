@@ -15,13 +15,17 @@ Não é necessário instalar bibliotecas ou dependências externas para executar
 ## Estrutura do projeto
 ```
 . 
-├── tcp/ 
-│ ├── tcp_client.py 
-│ └── tcp_server.py 
+├── tcp/                # Parte 2
+│ ├── tcp_client.py     # CalcClientTCP
+│ └── tcp_server.py     # CalcServerTCP
 │ 
-├── udp/ 
-│ ├── udp_client.py 
-│ └── udp_server.py 
+├── udp/                # Parte 1
+│ ├── udp_client.py     # CalcClientUDP (com timeout e retransmissão)
+│ └── udp_server.py     # CalcServerUDP (com simulação de perda configurável) 
+│ 
+├── protobuf/           # Implementação do TCP com serialização usando Protocol Buffers (Parte 4)
+│ ├── proto_client.py   # CalcClientProto 
+│ └── proto_server.py   # CalcServerProto  
 │ 
 └── README.md
 
@@ -45,7 +49,7 @@ python tcp/tcp_client.py
 O cliente estabelecerá uma conexão com o servidor e poderá realizar a troca de mensagens utilizando o protocolo TCP.  
 O cliente gera mensagens aleatórias com operações matemáticas simples, o servidor resolve a conta e o cliente exibe o resultado.
 
-## UDP
+### UDP
 Em um terminal, execute o servidor. O parâmetro `--loss-rate` define a porcentagem de datagramas que serão perdidos e aceita valores de `0.0` a `1.0`. 
 
 ```bash
@@ -54,7 +58,7 @@ python udp/udp_server.py --loss-rate 0.1
 
 Caso não seja passado nenhum valor, o servidor executará `--loss-rate` com valor `0.1`.
 
-Em seguida, em outro terminal, execute o cliente:
+Em outro terminal, execute o cliente:
 
 ```bash
 python udp/udp_client.py
