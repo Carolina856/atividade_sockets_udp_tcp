@@ -35,6 +35,9 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
+if not 0 <= args.loss_rate <= 1:
+    parser.error("--loss-rate deve estar entre 0 e 1.")
+
 LOSS_RATE = args.loss_rate
 print(f"Servidor iniciado com taxa de perda de {LOSS_RATE * 100}%") 
 
@@ -45,7 +48,7 @@ s.bind((HOST, PORT))
 n = 0 #Número da mensagem recebida
 
 while True:
-    print(f"Esperando Msg {n} ...")
+    print(f"\nEsperando Msg {n} ...")
     data, address = s.recvfrom(1024)
     ip, porta = address
     msg = data.decode('utf-8')

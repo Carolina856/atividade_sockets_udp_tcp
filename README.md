@@ -1,5 +1,5 @@
 # Atividade de comunicação com sockets
-Sistemas Distrbuídos e Redes de Comunicação  
+Sistemas Distribuídos e Redes de Comunicação  
 Maria Carolina - 603274
 
 ## Sobre
@@ -9,6 +9,8 @@ O objetivo é demonstrar, de forma prática, o funcionamento da comunicação cl
 ## Tecnologias utilizadas
 - Python 3
 - Biblioteca padrão `socket`
+- Protocol Buffers
+- `protoc` - Compilador do Protocol Buffers
 
 Não é necessário instalar bibliotecas ou dependências externas para executar o projeto.
 
@@ -24,6 +26,8 @@ Não é necessário instalar bibliotecas ou dependências externas para executar
 │ └── udp_server.py     # CalcServerUDP (com simulação de perda configurável) 
 │ 
 ├── protobuf/           # Implementação do TCP com serialização usando Protocol Buffers (Parte 4)
+│ ├── calc_pb2.py
+│ ├── calc.proto 
 │ ├── proto_client.py   # CalcClientProto 
 │ └── proto_server.py   # CalcServerProto  
 │ 
@@ -62,4 +66,17 @@ Em outro terminal, execute o cliente:
 
 ```bash
 python udp/udp_client.py
+```
+
+## Protocol Buffers usando o TCP
+Primeiramente, execute o servidor:
+
+```bash
+python protobuf/proto_server.py
+```
+
+Em outro terminal, execute o cliente:
+
+```bash
+python protobuf/proto_client.py
 ```
