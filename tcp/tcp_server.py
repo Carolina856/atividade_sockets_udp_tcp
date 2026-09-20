@@ -1,5 +1,6 @@
 import socket
 import operator
+import threading
 
 def calc_result(received_msg):
     operadores = {
@@ -23,25 +24,34 @@ def calc_result(received_msg):
     else:
         return "ERROR:" + msg[1] + ":Aconteceu um erro"
         
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(('localhost', 6789))
-s.listen(1)
-print(f"Servidor rodando")
-
-while True:
-    conn, addr = s.accept()
+def clients(conn, addr):
     print(f"Conectado com {addr}")
 
     while True:
         data = conn.recv(1024)
+
         if not data:
             break
 
         msg = data.decode('utf-8')
-        print(f"Mensagem recebida: {msg}")
+        print(f"Mensagem recebida de {addr}: {msg}")
+
         final_data = str(calc_result(msg))
         conn.sendall(bytes(final_data, 'utf-8'))
 
     print(f"Finalizando conexão com {addr}")
     conn.close()
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind(('localhost', 6789))
+s.listen(5)
+print(f"Servidor rodando")
+
+while True:
+    conn, addr = s.accept()
+
+    thread = threading.Thread(
+        target=clients,
+        args=(conn, addr)
+    )
+    thread.start()
