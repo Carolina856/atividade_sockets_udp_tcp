@@ -18,7 +18,8 @@ Não é necessário instalar bibliotecas ou dependências externas para executar
 ```
 .
 ├── docs
-│ └── Respostas.md
+│ ├── comparacoes.md
+│ └── respostas.md
 │ 
 ├── protobuf/           # Implementação do TCP com serialização usando Protocol Buffers (Parte 4)
 │ ├── calc_pb2.py
