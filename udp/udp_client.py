@@ -8,13 +8,14 @@ PORT = 6789
 operadores = ['+', '-', '*', '/']
 resultados = [] #Lista de dicionários
 
+N_REQ = 20
 MAX_RETRANSMISSAO = 5 
 MAX_TEMPO = 0.5 #Tempo máximo de espera da mensagem em segundos
 
 inicio = time.perf_counter()
 ultimo_tempo = inicio
 
-for n in range(20):
+for n in range(N_REQ):
     #Cálculo da operação matemática aleatória
     num1 = random.randint(0, 100)
     num2 = random.randint(0, 100)
@@ -68,7 +69,7 @@ s.close()
 sum = 0
 cont = 0
 print("Tempo de cada RTT (ms)")
-for i in range(20):
+for i in range(N_REQ):
     print(f"n: {i}  rtt: {(resultados[i]["rtt"] * 1000):.3f}    retransmissões:{resultados[i]["retransmissoes"]}")
 
     if resultados[i]["rtt"] != None:

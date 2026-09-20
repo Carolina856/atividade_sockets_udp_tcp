@@ -16,7 +16,16 @@ Não é necessário instalar bibliotecas ou dependências externas para executar
 
 ## Estrutura do projeto
 ```
-. 
+.
+├── docs
+│ └── Respostas.md
+│ 
+├── protobuf/           # Implementação do TCP com serialização usando Protocol Buffers (Parte 4)
+│ ├── calc_pb2.py
+│ ├── calc.proto 
+│ ├── proto_client.py   # CalcClientProto 
+│ └── proto_server.py   # CalcServerProto  
+│ 
 ├── tcp/                # Parte 2
 │ ├── tcp_client.py     # CalcClientTCP
 │ └── tcp_server.py     # CalcServerTCP
@@ -24,12 +33,6 @@ Não é necessário instalar bibliotecas ou dependências externas para executar
 ├── udp/                # Parte 1
 │ ├── udp_client.py     # CalcClientUDP (com timeout e retransmissão)
 │ └── udp_server.py     # CalcServerUDP (com simulação de perda configurável) 
-│ 
-├── protobuf/           # Implementação do TCP com serialização usando Protocol Buffers (Parte 4)
-│ ├── calc_pb2.py
-│ ├── calc.proto 
-│ ├── proto_client.py   # CalcClientProto 
-│ └── proto_server.py   # CalcServerProto  
 │ 
 └── README.md
 

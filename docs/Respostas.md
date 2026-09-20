@@ -1,10 +1,11 @@
-# Parte 3: Experimento e Análise
+# Comparações entre as implementações
+## Parte 3: Experimento e Análise
 Execute o cliente 3 vezes contra o servidor UDP, variando a taxa de perda simulada: 0%, 10%, 30%. Depois, execute uma vez contra o servidor TCP.
 Para cada execução, registre:
-● Tempo total da sequência completa;
-● RTT médio e RTT máximo;
-● Número de retransmissões (apenas UDP); e
-● Requisições perdidas definitivamente, se houver (esgotou tentativas).
+- Tempo total da sequência completa;
+- RTT médio e RTT máximo;
+- Número de retransmissões (apenas UDP); e
+- Requisições perdidas definitivamente, se houver (esgotou tentativas).
 
 | Caso | Entregues | Perdidos | Retransmissões | RTT Médio (ms) | RTT Máximo (ms) | Duração Total (ms)|
 | --- | --- | --- |--- |--- |--- |--- |
@@ -12,3 +13,16 @@ Para cada execução, registre:
 | UDP - 10% | 20 | 0 | 3 | 77.107 | 513.917 | 1542.267 |
 | UDP - 30% | 20 | 0 | 11 | 281.973 | 1528.407 | 5639.650 |
 | TCP | 20 | 0 | 0 | 0.35 | 0.51 | 7.15 |
+
+
+## Parte 4: Implementação com Protocol Buffers
+O comportamento deve ser equivalente ao da Parte 2 (TCP, N=20 requisições, mede RTT),
+mas com as mensagens serializadas em binário pelo protobuf.
+
+Meça e registre o tamanho médio das mensagens (em bytes) e compare com o
+protocolo textual da Parte 2.
+
+| Caso | Tamanho Médio | RTT Médio (ms) | RTT Máximo (ms) | Duração Total (ms) |
+| --- | --- | --- |--- |--- |
+| TCP Textual | 14.350 | 0.773 | 1.262 | 15.478 |
+| Protocol Buffers usando TCP | 8.9 | 0.808 | 1.482 | 16.161 |
